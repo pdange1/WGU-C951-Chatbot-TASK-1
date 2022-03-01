@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+  
+  
+
+<!-- Jobs we are using for the BOT:
+        Back End Dev - more focused on Big data and servers.
+        Software programmer - Works more on coding and  codes a lot- https://www.wgu.edu/career-guide/information-technology/software-developer-career.html#close
+        Web developer - more focused on design
+        UI/UX developer - more focused on design
+        Software engineer - More focused on problem solving and coding.
+-->
+
+<!-- BEGIN HERE-->
+    <category>
+      <pattern>*</pattern>
+      <template>
+          <random>
+              <li>I'm not sure what you mean by "<star/>". Type "start" below so that I may help you today.</li>
+              <li>I'm not sure I understand what "<star/>" means, please type "start" to begin.</li>
+              <li>Please type "start" so that we may begin. I do not understand what you mean by "<star/>".</li>
+          </random>
+      </template>
+  </category>
+  
+  <!--IF THEY HAVE MANNERS-->
+  
+  <category>
+      <pattern>HELLO</pattern>
+      <template>Hello! To begin please type, "start". :)</template>
+  </category>
+  
+  <!--ASK FOR NAME-->
+
+  <category>
+    <pattern>START</pattern>
+    <template>Hello! What is your name? Respond with "My name is (your name)".</template>
+  </category>
+  
+  <!--ASK WHAT DEGREE THEY ARE IN-->
+
+  <category>
+      <pattern> MY NAME IS *</pattern>
+      <template>Hello <set name ="name"><star/></set>. What is your undergraduate degree?
+         <button>
+             <text>Computer Science</text>
+             <postback>compsci</postback>
+         </button>
+         <button>
+            <text>Interior Design</text>
+            <postback>notcompsci</postback>
+         </button>
+         </template>
+  </category>
+  
+  <!-- IF NOT IN COPUTER SCIENCE- START OVERR-->
+  <category>
+      <pattern>NOTCOMPSCI</pattern>
+      <template>Unfortunately, this is for computer science students only.
+      Please refer to another chat to help. Type "start" to begin this chat from the beginning.</template>
+  </category>
+  
+<!-- IF THEY'RE IN COMPUTER SCIENCE - CONTINUE-->
+  
+  <category>
+      <pattern>COMPSCI</pattern>
+      <template>  
+      What do you feel you are better at <get name = "name"/>?
+          <button>
+             <text>Design</text>
+             <postback>design</postback>
+          </button>
+          <button>
+             <text>Problem Solving</text>
+             <postback>coding</postback>
+          </button>
+       </template>
+  </category>
+
+
+  <!-- IF PROBLEM SOLVING IS PREFERRED OVER DESIGN -->
+<category>
+    <pattern>CODING</pattern>
+    <template>Which do you think would be more interesting to you?
+        <carousel>
+            <card>
+                <image>https://sites.google.com/site/carlypracticesite/_/rsrc/1463213201532/home/Internet-630x420.jpg</image>
+                <title>The internet</title>
+                <subtitle>Working with the internet</subtitle>
+                <button>
+                    <text>Choose</text>
+                    <postback>backend dev</postback>
+                </button>
+            </card>
+            <card>
+                <image>https://marvel-b1-cdn.bc0a.com/f00000000075552/www.perforce.com/sites/default/files/image/2020-01/image-blog-future-software-development.png</image>
+                <title>Coding PC and Phone applications</title>
+                <subtitle></subtitle>
+                <button>
+                    <text>Choose</text>
+                    <postback>software programmer</postback>
+                </button>
+            </card>
+        </carousel>
+    </template>
+</category>
+
+  <!-- IF PROBLEM SOLVING IS PREFERRED OVER DESIGN -->
+<category>
+    <pattern>DESIGN</pattern>
+    <template>Which do you think would be more interesting to you?
+        <carousel>
+            <card>
+                <image>http://pluspng.com/img-png/web-development-png-web-development-1100.png</image>
+                <title>Websites</title>
+                <subtitle>Working with website design</subtitle>
+                <button>
+                    <text>Choose</text>
+                    <postback>frontend dev</postback>
+                </button>
+            </card>
+            <card>
+                <image>http://www.invespcro.com/blog/images/blog-images/ux-ui-design.jpg</image>
+                <title>Creating PC and Phone User Interfaces</title>
+                <subtitle>Working with User Interfaces</subtitle>
+                <button>
+                    <text>Choose</text>
+                    <postback>uiux</postback>
+                </button>
+            </card>
+            <card>
+                <image>https://vegashiking.com/images/use-computer-application-on-phone.jpg</image>
+                <title>Creating PC and Phone applications</title>
+                <subtitle></subtitle>
+                <button>
+                    <text>Choose</text>
+                    <postback>software developer</postback>
+                </button>
+            </card>
+        </carousel>
+    </template>
+</category>
+
+
+<!--CHOSE WORKING WITH COMPUTER SOFTWARE-->
+<category>
+    <pattern>SOFTWARE PROGRAMMER</pattern>
+    <template> You chose Software Programmer! 
+   A programmer also may specialize in one or more computing 
+   fields, like database, security or software/firmware/mobile/Web development.
+   To learn more about what
+     a Software Programmer does, click the "Learn More"
+        <button>
+            <text>Learn More</text>
+            <url>https://www.techopedia.com/definition/4813/programmer</url>
+        </button>
+    </template>
+</category>
+
+<!--chose application coding -->
+<category>
+    <pattern>SOFTWARE DEVELOPER</pattern>
+    <template> You chose Software Developer! 
+    Often independent from the code-heavy responsibilities 
+    of a programmer, software developers are typically involved
+    in nearly all stages of a program’s lifecycle. To learn more about what
+     a Software Developer does, click the "Learn More" 
+     button below.
+        <button>
+            <text>Learn More</text>
+            <url>https://www.wgu.edu/career-guide/information-technology/software-developer-career.html#close/</url>
+        </button>
+    </template>
+</category>
+
+<!-- chose internet coding -->
+<category>
+    <pattern>BACKEND DEV</pattern>
+    <template> You chose Back End Development! 
+    Heavy on the code and hard communication between servers, working on the back end 
+    is full of coding opportunities to connect the front end mechanics to the back end of web development. 
+    To learn more please click the "Learn More" button below. 
+        <button>
+            <text>Learn More</text>
+            <url>https://blog.hubspot.com/website/back-end-developer</url>
+        </button>
+    </template>
+</category>
+
+<category>
+    <pattern>FRONTEND DEV</pattern>
+    <template> You chose Front End Development! 
+    Lighter on code for the most part, front end development
+    is more gearerd towards creating good GUI's and 
+    strive for user friendlyness and clear communication between
+    users and the weebsites they interact with.
+    To learn more please click the "Learn More" button below. 
+        <button>
+            <text>Learn More</text>
+            <url>https://www.w3schools.com/whatis/whatis_frontenddev.asp</url>
+        </button>
+    </template>
+</category>
+
+<category>
+    <pattern>UIUX</pattern>
+    <template> You chose UI/UX Development! 
+    While UI handles the look of a digital product, 
+    UX handles how all of the UI elements work together 
+    to create a seamless user experience. To learn more about
+    UI/UX Development, click the "Learn More" button below.
+        <button>
+            <text>Learn More</text>
+            <url>https://sdacademy.dev/what-is-ux-ui-design/</url>
+        </button>
+    </template>
+</category>
+
+
+  
+  
+</aiml>
